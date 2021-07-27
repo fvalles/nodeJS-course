@@ -17,24 +17,26 @@ hbs.registerPartials(partialsPath);
 // Setup static directory to serve
 app.use(express.static(publicDirPath));
 
+const authorName = "Fede Valles";
+
 app.get("", (req, res) => {
   res.render("index", {
     title: "Weather App",
-    name: "Fede Valles",
+    name: authorName,
   });
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About Me",
-    name: "Fede Valles",
+    name: authorName,
   });
 });
 
 app.get("/help", (req, res) => {
   res.render("help", {
     title: "Help Page",
-    name: "Fede Valles",
+    name: authorName,
     helpText: "This is some helpful text",
   });
 });
@@ -43,6 +45,22 @@ app.get("/weather", (req, res) => {
   res.send({
     forecast: "It's cloudy and it's 10 degrees",
     location: "Buenos Aires",
+  });
+});
+
+app.get("/help/*", (req, res) => {
+  res.render("404", {
+    title: "404 Help",
+    errorMsg: "Help article not found",
+    name: authorName,
+  });
+});
+
+app.get("*", (req, res) => {
+  res.render("404", {
+    title: "404",
+    errorMsg: "Page not found",
+    name: authorName,
   });
 });
 
