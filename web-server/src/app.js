@@ -23,7 +23,7 @@ hbs.registerPartials(partialsPath);
 // Setup static directory to serve
 app.use(express.static(publicDirPath));
 
-const authorName = "Fede Valles";
+const authorName = "Federico Valles";
 
 app.get("", (req, res) => {
   res.render("index", {
