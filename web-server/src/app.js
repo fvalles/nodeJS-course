@@ -5,7 +5,10 @@ const hbs = require("hbs");
 const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 
+const localPort = 3000;
+
 const app = express();
+const port = process.env.PORT || localPort;
 
 // Define paths for Express config
 const publicDirPath = path.join(__dirname, "../public");
@@ -96,8 +99,6 @@ app.get("*", (req, res) => {
     name: authorName,
   });
 });
-
-const port = 3000;
 
 app.listen(port, () => {
   console.log("Server is up on port", port);
